@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PostList from "../components/posts/PostList";
-import { fetchPosts } from "../api/fetchPosts";
 import axios from "axios";
 
 const PostsPage = () => {

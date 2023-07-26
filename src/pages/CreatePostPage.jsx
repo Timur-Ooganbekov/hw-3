@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const CreatePost = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState("");
-  const [title, setTitile] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,6 +13,7 @@ const CreatePost = () => {
     const newPost = {
       title,
       content,
+      userId: 1,
     };
     try {
       const { data } = await axios.post(
@@ -20,8 +21,8 @@ const CreatePost = () => {
         newPost
       );
       console.log(data);
-      navigate("/");
-      setContent(data.posts);
+      navigate("/posts");
+      setContent(data);
     } catch (error) {
       console.log("Ошибка", error);
     }
@@ -33,7 +34,7 @@ const CreatePost = () => {
         <input
           type="text"
           value={title}
-          onChange={(e) => setTitile(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="Заголовок"
         />
         <textarea
